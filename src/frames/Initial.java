@@ -19,7 +19,10 @@ public class Initial extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	//Creamos un frame de login
 	private Login login = new Login();
+	//Creamos un frame de registro
+	private Registro registro = new Registro();
 
 	/**
 	 * Launch the application.
@@ -73,6 +76,13 @@ public class Initial extends JFrame {
 		contentPane.add(lblElijaUnaOpcin);
 		
 		JButton botonInicioSesion = new JButton("Registrarse");
+		botonInicioSesion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+				registro.setVisible(true);
+			}
+		});
 		botonInicioSesion.setBounds(157, 70, 138, 27);
 		contentPane.add(botonInicioSesion);
 	}
