@@ -58,9 +58,9 @@ public class Registro extends JFrame {
 		lblSeleccioneUnRol.setBounds(33, 0, 124, 17);
 		contentPane.add(lblSeleccioneUnRol);
 		
-		JRadioButton rdbtnOtro = new JRadioButton("Otro");
-		rdbtnOtro.setBounds(43, 53, 130, 25);
-		contentPane.add(rdbtnOtro);
+		JRadioButton rdbtnGestor = new JRadioButton("Gestor");
+		rdbtnGestor.setBounds(43, 53, 130, 25);
+		contentPane.add(rdbtnGestor);
 		
 		textField = new JTextField();
 		textField.setBounds(92, 109, 285, 25);
