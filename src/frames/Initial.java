@@ -19,10 +19,7 @@ public class Initial extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	//Creamos un frame de login
-	private Login login = new Login();
-	//Creamos un frame de registro
-	private Registro registro = new Registro();
+
 
 	/**
 	 * Launch the application.
@@ -31,8 +28,10 @@ public class Initial extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Initial frame = new Initial();
-					frame.setVisible(true);
+					GlobalInstances.init = new Initial();
+					GlobalInstances.login = new Login();
+					GlobalInstances.registro = new Registro();
+					GlobalInstances.init.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -44,6 +43,7 @@ public class Initial extends JFrame {
 	 * Create the frame.
 	 */
 	public Initial() {
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Initial.class.getResource("/resources/uc3m.png")));
 		setTitle("Bienvenido a mi granja");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,9 +59,9 @@ public class Initial extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				//Dejamos de ver nuestra ventana 
-				setVisible(false);
+				GlobalInstances.init.setVisible(false);
 				//Vemos la nueva creada
-				login.setVisible(true);
+				GlobalInstances.login.setVisible(true);
 			}
 		});
 		botonLogin.setBounds(157, 162, 138, 27);
@@ -75,15 +75,15 @@ public class Initial extends JFrame {
 		lblElijaUnaOpcin.setBounds(172, 12, 105, 17);
 		contentPane.add(lblElijaUnaOpcin);
 		
-		JButton botonInicioSesion = new JButton("Registrarse");
-		botonInicioSesion.addMouseListener(new MouseAdapter() {
+		JButton botonRegistro = new JButton("Registrarse");
+		botonRegistro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setVisible(false);
-				registro.setVisible(true);
+				GlobalInstances.init.setVisible(false);
+				GlobalInstances.registro.setVisible(true);
 			}
 		});
-		botonInicioSesion.setBounds(157, 70, 138, 27);
-		contentPane.add(botonInicioSesion);
+		botonRegistro.setBounds(157, 70, 138, 27);
+		contentPane.add(botonRegistro);
 	}
 }
