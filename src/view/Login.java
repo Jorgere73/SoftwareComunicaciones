@@ -19,29 +19,14 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
-	
-	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private CuentasModel mcuentas;
 
 	/**
 	 * Create the frame.
 	 */
 	public Login() {
+		mcuentas = new CuentasModel();
+		mcuentas.fillDB("./resources/usuarios_db.txt");
 		setTitle("Inicio de sesión");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -84,8 +69,8 @@ public class Login extends JFrame {
 		btnVolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setVisible(false);
-				//TODO global instances
+				GlobalInstances.init.setVisible(true);
+				GlobalInstances.login.setVisible(false);
 			}
 		});
 		btnVolver.setBounds(250, 145, 105, 27);

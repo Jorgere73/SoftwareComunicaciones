@@ -38,10 +38,10 @@ public class Initial extends JFrame {
 		botonLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//Dejamos de ver nuestra ventana 
-				GlobalInstances.init.setVisible(false);
 				//Vemos la nueva creada
 				GlobalInstances.login.setVisible(true);
+				//Dejamos de ver nuestra ventana 
+				GlobalInstances.init.setVisible(false);
 			}
 		});
 		botonLogin.setBounds(157, 162, 138, 27);
@@ -59,8 +59,8 @@ public class Initial extends JFrame {
 		botonRegistro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				GlobalInstances.init.setVisible(false);
 				GlobalInstances.registro.setVisible(true);
+				GlobalInstances.init.setVisible(false);
 			}
 		});
 		botonRegistro.setBounds(157, 70, 138, 27);
