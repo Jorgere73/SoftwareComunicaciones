@@ -2,7 +2,7 @@ package view;
 
 public class Cuenta 
 {
-	//Operador = 'o', Gestor = 'g'
+	//Operador = 'o', Gestor = 'a'
 	public char tipo;
 	//Nombre de la cuenta
 	public String name;

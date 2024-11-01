@@ -8,11 +8,15 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
+import java.awt.Color;
 
 public class Registro extends JFrame {
 
@@ -21,11 +25,16 @@ public class Registro extends JFrame {
 	private JTextField textField;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
+	private JRadioButton rdbtnGestor;
+	private CuentasModel mcuentas;
 
 	/**
 	 * Create the frame.
 	 */
 	public Registro() {
+		mcuentas = new CuentasModel();
+		mcuentas.fillDB("./resources/usuarios_db.txt");
+		
 		setTitle("Registro de nuevos usuarios");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -35,17 +44,9 @@ public class Registro extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JRadioButton rdbtnOperador = new JRadioButton("Operador");
-		rdbtnOperador.setBounds(43, 24, 130, 25);
-		contentPane.add(rdbtnOperador);
-		
 		JLabel lblSeleccioneUnRol = new JLabel("Seleccione un rol");
 		lblSeleccioneUnRol.setBounds(33, 0, 124, 17);
 		contentPane.add(lblSeleccioneUnRol);
-		
-		JRadioButton rdbtnGestor = new JRadioButton("Gestor");
-		rdbtnGestor.setBounds(43, 53, 130, 25);
-		contentPane.add(rdbtnGestor);
 		
 		textField = new JTextField();
 		textField.setBounds(92, 106, 285, 25);
@@ -73,10 +74,36 @@ public class Registro extends JFrame {
 		contentPane.add(lblRepitaLaContrasea);
 		
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.setBackground(Color.GREEN);
 		btnAceptar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				char type = rdbtnGestor.isSelected() ? 'a' : 'o';
+				String name = textField.getText();
+				if(Arrays.equals(passwordField.getPassword(), passwordField_1.getPassword()))
+				{
+					//Contraseñas coinciden -> crear cuenta
+					String password = new String(passwordField.getPassword());
+					Cuenta cuenta = new Cuenta(name, password, type);
+					mcuentas.addCuenta(cuenta);
+					//Guardar la cuenta en el archivo .txt
+					mcuentas.dump("./resources/usuarios_db.txt");
+					JOptionPane.showMessageDialog(null, 
+	                        "Cuenta registrada correctamente", 
+	                        "Registro de cuentas", 
+	                        JOptionPane.INFORMATION_MESSAGE);
+					
+				}
+				else
+				{
+					//Contraseñas no coinciden
+					passwordField.setText("");
+					passwordField_1.setText("");
+					JOptionPane.showMessageDialog(null, 
+	                        "Las contraseñas introducidas no coinciden.", 
+	                        "Error de registro", 
+	                        JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		btnAceptar.setBounds(112, 233, 94, 17);
@@ -92,5 +119,25 @@ public class Registro extends JFrame {
 		});
 		btnVolver.setBounds(218, 233, 114, 17);
 		contentPane.add(btnVolver);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(38, 24, 114, 57);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		//Para que al seleccionar un botón se deseleccione el otro
+		ButtonGroup grupoBotones = new ButtonGroup();
+		
+		JRadioButton rdbtnOperador = new JRadioButton("Operador");
+		rdbtnOperador.setBounds(10, 8, 93, 23);
+		panel.add(rdbtnOperador);
+		rdbtnOperador.setSelected(true);
+		
+		rdbtnGestor = new JRadioButton("Gestor");
+		rdbtnGestor.setBounds(10, 32, 73, 23);
+		panel.add(rdbtnGestor);
+		
+		grupoBotones.add(rdbtnOperador);
+		grupoBotones.add(rdbtnGestor);
 	}
 }

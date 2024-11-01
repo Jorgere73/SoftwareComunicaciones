@@ -7,6 +7,9 @@ public class Main
 		GlobalInstances.init = new Initial();
 		GlobalInstances.login = new Login();
 		GlobalInstances.registro = new Registro();
+		GlobalInstances.menuGestor = new MenuGestor();
+		GlobalInstances.menuOperador = new MenuOperador();
+		
 		GlobalInstances.init.setVisible(true);
 	}
 }

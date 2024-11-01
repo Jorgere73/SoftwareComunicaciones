@@ -7,11 +7,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
 
 public class Login extends JFrame {
 
@@ -27,6 +29,7 @@ public class Login extends JFrame {
 	public Login() {
 		mcuentas = new CuentasModel();
 		mcuentas.fillDB("./resources/usuarios_db.txt");
+		
 		setTitle("Inicio de sesión");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -50,6 +53,60 @@ public class Login extends JFrame {
 		contentPane.add(lblContrasea);
 		
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				mcuentas.fillDB("./resources/usuarios_db.txt");
+				String login = textField.getText();
+				//Devuelve un char[] por seguridad para que la contraseña no se mantenga en memoria
+				char[] password = passwordField.getPassword();
+				
+				Cuenta cuentaLogin = mcuentas.getCuenta(login);
+				
+				if(cuentaLogin != null)
+				{
+					if(Arrays.equals(password, cuentaLogin.pass.toCharArray()))
+					{
+						GlobalInstances.cuenta = cuentaLogin;
+						//Contraseña y usuario correctos
+						if(cuentaLogin.getTipo() == 'o')
+						{
+							//Redirigir a menu de operador
+							GlobalInstances.menuOperador.setVisible(true);
+							GlobalInstances.login.setVisible(false);
+						}
+						else if(cuentaLogin.getTipo() == 'a')
+						{
+							//Redirigir a menu de gestor
+							GlobalInstances.menuGestor.setVisible(true);
+							GlobalInstances.login.setVisible(false);
+						}
+						 
+					}
+					else
+					{
+						//Usuario existe, pero contraseña incorrecta
+						JOptionPane.showMessageDialog(null, 
+		                        "La contraseña introducida es incorrecta.", 
+		                        "Error de autenticación", 
+		                        JOptionPane.ERROR_MESSAGE);
+						passwordField.setText("");
+					}
+				}
+				else
+				{
+					//No existe esa cuenta
+					JOptionPane.showMessageDialog(null, 
+	                        "El usuario introducido es incorrecto.", 
+	                        "Error de autenticación", 
+	                        JOptionPane.ERROR_MESSAGE);
+					textField.setText("");
+					passwordField.setText("");
+				}
+				
+			}
+		});
 		btnAceptar.setBounds(128, 145, 105, 27);
 		contentPane.add(btnAceptar);
 		
