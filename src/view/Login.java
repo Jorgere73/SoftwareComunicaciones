@@ -1,4 +1,4 @@
-package frames;
+package view;
 
 import java.awt.EventQueue;
 
@@ -42,7 +42,6 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/resources/uc3m.png")));
 		setTitle("Inicio de sesión");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

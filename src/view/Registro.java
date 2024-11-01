@@ -1,4 +1,4 @@
-package frames;
+package view;
 
 import java.awt.EventQueue;
 
@@ -41,7 +41,6 @@ public class Registro extends JFrame {
 	 */
 	public Registro() {
 		setTitle("Registro de nuevos usuarios");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Registro.class.getResource("/resources/uc3m.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

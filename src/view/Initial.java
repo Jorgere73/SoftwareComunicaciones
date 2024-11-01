@@ -1,4 +1,4 @@
-package frames;
+package view;
 
 import java.awt.EventQueue;
 
@@ -44,7 +44,6 @@ public class Initial extends JFrame {
 	 */
 	public Initial() {
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Initial.class.getResource("/resources/uc3m.png")));
 		setTitle("Bienvenido a mi granja");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -72,7 +71,7 @@ public class Initial extends JFrame {
 		contentPane.add(botonLogin);
 		
 		JLabel lblElijaUnaOpcin = new JLabel("Elija una opción");
-		lblElijaUnaOpcin.setBounds(172, 12, 105, 17);
+		lblElijaUnaOpcin.setBounds(157, 12, 152, 27);
 		contentPane.add(lblElijaUnaOpcin);
 		
 		JButton botonRegistro = new JButton("Registrarse");
