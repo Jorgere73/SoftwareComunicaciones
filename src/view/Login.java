@@ -28,7 +28,6 @@ public class Login extends JFrame {
 	 */
 	public Login() {
 		mcuentas = new CuentasModel();
-		mcuentas.fillDB("./resources/usuarios_db.txt");
 		
 		setTitle("Inicio de sesión");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,6 +56,8 @@ public class Login extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
+				
+				mcuentas.clearCuentas();
 				mcuentas.fillDB("./resources/usuarios_db.txt");
 				String login = textField.getText();
 				//Devuelve un char[] por seguridad para que la contraseña no se mantenga en memoria

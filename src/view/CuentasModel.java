@@ -31,6 +31,11 @@ public class CuentasModel
 		cuentasDB.remove(login);
 	}
 	
+	public void clearCuentas()
+	{
+		cuentasDB.clear();
+	}
+	
 	
 	public void fillDB(String fileName) {
 		try(FileReader fr = new FileReader(fileName);

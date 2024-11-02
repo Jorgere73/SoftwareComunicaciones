@@ -74,7 +74,6 @@ public class MenuOperador extends JFrame {
 		btnDarseDeBaja.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//TODO Proceso de darse de baja...
 				int response = JOptionPane.showConfirmDialog(null, 
 		                "¿Quieres dar de baja a la cuenta?", 
 		                "Seleccione una opción", 
