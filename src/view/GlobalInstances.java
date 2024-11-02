@@ -7,6 +7,9 @@ public class GlobalInstances
 	public static Registro registro;
 	public static MenuGestor menuGestor;
 	public static MenuOperador menuOperador;
+	public static AddSensor addSensor;
+	public static DeleteSensor deleteSensor;
+	
 	//Guarda la cuenta que se está usando en el momento
 	public static Cuenta cuenta;
 	

@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -20,27 +18,12 @@ public class MenuGestor extends JFrame {
 	private JPanel contentPane;
 	private JRadioButton rdbtnAgregarSensor;
 	private CuentasModel mcuentas;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MenuGestor frame = new MenuGestor();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
-	public MenuGestor() {
+	public MenuGestor() 
+	{
+		
 		mcuentas = new CuentasModel();
 		mcuentas.fillDB("./resources/usuarios_db.txt");
 		
@@ -61,6 +44,7 @@ public class MenuGestor extends JFrame {
 		
 		rdbtnAgregarSensor = new JRadioButton("Agregar Sensor");
 		rdbtnAgregarSensor.setBounds(141, 55, 149, 23);
+		rdbtnAgregarSensor.setSelected(true);
 		contentPane.add(rdbtnAgregarSensor);
 		
 		JRadioButton rdbtnEliminarSensor = new JRadioButton("Eliminar Sensor");
@@ -70,15 +54,6 @@ public class MenuGestor extends JFrame {
 		bgroup.add(rdbtnAgregarSensor);
 		bgroup.add(rdbtnEliminarSensor);
 		
-		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-			}
-		});
-		btnAceptar.setBounds(157, 141, 117, 25);
-		contentPane.add(btnAceptar);
 		
 		JButton btnDarseDeBaja = new JButton("Darse de baja");
 		btnDarseDeBaja.addMouseListener(new MouseAdapter() {
@@ -112,5 +87,27 @@ public class MenuGestor extends JFrame {
 		});
 		btnCerrarSesin.setBounds(282, 214, 145, 36);
 		contentPane.add(btnCerrarSesin);
+		
+		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				System.out.println("AAA");
+				if(rdbtnAgregarSensor.isSelected())
+				{
+					//Abrir ventana añadir sensor
+					GlobalInstances.addSensor.setVisible(true);
+					GlobalInstances.menuGestor.setVisible(false);
+				}
+				else
+				{
+					//Abrir ventana eliminar sensor
+				}
+			}
+		});
+		btnAceptar.setBounds(141, 140, 149, 36);
+		contentPane.add(btnAceptar);
+		
 	}
 }

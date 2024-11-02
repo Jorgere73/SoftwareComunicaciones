@@ -9,6 +9,8 @@ public class Main
 		GlobalInstances.registro = new Registro();
 		GlobalInstances.menuGestor = new MenuGestor();
 		GlobalInstances.menuOperador = new MenuOperador();
+		GlobalInstances.addSensor = new AddSensor();
+		GlobalInstances.deleteSensor = new DeleteSensor();
 		
 		GlobalInstances.init.setVisible(true);
 	}
