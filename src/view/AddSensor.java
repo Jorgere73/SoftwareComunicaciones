@@ -89,6 +89,7 @@ public class AddSensor extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
+				msensores.clearSensores();
 				msensores.fillDB("./resources/sensores.txt");
 				
 				String tipo = (String) choice.getSelectedItem();

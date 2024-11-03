@@ -1,2 +1,0 @@
-ventilador	kruiz	Humedad
-hehe	casa	Temperatura exterior

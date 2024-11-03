@@ -104,9 +104,11 @@ public class MenuGestor extends JFrame {
 				else
 				{
 					//Abrir ventana eliminar sensor
+					msensores.clearSensores();
 					msensores.fillDB("./resources/sensores.txt");
 					if(msensores.getSensores().size() > 0)
 					{
+						GlobalInstances.deleteSensor = new DeleteSensor();
 						GlobalInstances.deleteSensor.setVisible(true);
 						GlobalInstances.menuGestor.setVisible(false);
 					}

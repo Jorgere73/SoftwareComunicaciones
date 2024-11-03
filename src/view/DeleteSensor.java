@@ -68,13 +68,33 @@ public class DeleteSensor extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				msensores.removeSensor((String) choice.getSelectedItem());
-				msensores.dump("./resources/sensores.txt");
+				msensores.clearSensores();
+				msensores.fillDB("./resources/sensores.txt");
 				
-				JOptionPane.showMessageDialog(null, 
-		                "Se ha eliminado el sensor correctamente", 
-		                "Sensor eliminado", 
-		                JOptionPane.INFORMATION_MESSAGE);
+				//Queda más de un sensor por eliminar
+				Object borrado = choice.getSelectedItem();
+				msensores.removeSensor((String) borrado);
+				msensores.dump("./resources/sensores.txt");
+				choice.removeItem(borrado);
+				
+				if(msensores.getSensores().size() < 1)
+				{
+					//Solo queda un sensor por eliminar
+					JOptionPane.showMessageDialog(null, 
+			                "No quedan más sensores por eliminar", 
+			                "Sensor eliminado", 
+			                JOptionPane.INFORMATION_MESSAGE);
+					
+					GlobalInstances.menuGestor.setVisible(true);
+					GlobalInstances.deleteSensor.setVisible(false);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, 
+			                "Se ha eliminado el sensor correctamente", 
+			                "Sensor eliminado", 
+			                JOptionPane.INFORMATION_MESSAGE);
+				}	
 			}
 		});
 		btnEliminar.setBounds(235, 102, 142, 36);
