@@ -10,7 +10,7 @@ public class GlobalInstances
 	public static AddSensor addSensor;
 	public static DeleteSensor deleteSensor;
 	
-	//Guarda la cuenta que se está usando en el momento
+	//Guarda la cuenta que se está usando en el momento, para recordarla si nos damos de baja
 	public static Cuenta cuenta;
 	
 	private static GlobalInstances INSTANCE = null;

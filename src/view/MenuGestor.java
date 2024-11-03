@@ -66,7 +66,7 @@ public class MenuGestor extends JFrame {
 		                JOptionPane.YES_NO_OPTION);
 				if(response == JOptionPane.YES_OPTION)
 				{
-					mcuentas.removeCuenta(GlobalInstances.cuenta.name);
+					mcuentas.removeCuenta(GlobalInstances.cuenta.getName());
 					mcuentas.dump("./resources/usuarios_db.txt");
 					GlobalInstances.init.setVisible(true);
 					GlobalInstances.menuGestor.setVisible(false);
@@ -93,7 +93,6 @@ public class MenuGestor extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				System.out.println("AAA");
 				if(rdbtnAgregarSensor.isSelected())
 				{
 					//Abrir ventana añadir sensor

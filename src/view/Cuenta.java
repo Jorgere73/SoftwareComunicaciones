@@ -3,11 +3,11 @@ package view;
 public class Cuenta 
 {
 	//Operador = 'o', Gestor = 'a'
-	public char tipo;
+	private char tipo;
 	//Nombre de la cuenta
-	public String name;
+	private String name;
 	//Contraseña para la cuenta
-	public String pass;
+	private String pass;
 	
 	public Cuenta(String name, String pass, char tipo)
 	{

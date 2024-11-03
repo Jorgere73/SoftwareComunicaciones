@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
-import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Arrays;
@@ -67,7 +65,7 @@ public class Login extends JFrame {
 				
 				if(cuentaLogin != null)
 				{
-					if(Arrays.equals(password, cuentaLogin.pass.toCharArray()))
+					if(Arrays.equals(password, cuentaLogin.getPass().toCharArray()))
 					{
 						GlobalInstances.cuenta = cuentaLogin;
 						//Contraseña y usuario correctos

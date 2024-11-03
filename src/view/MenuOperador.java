@@ -62,7 +62,7 @@ public class MenuOperador extends JFrame {
 		                JOptionPane.YES_NO_OPTION);
 				if(response == JOptionPane.YES_OPTION)
 				{
-					mcuentas.removeCuenta(GlobalInstances.cuenta.name);
+					mcuentas.removeCuenta(GlobalInstances.cuenta.getName());
 					mcuentas.dump("./resources/usuarios_db.txt");
 					GlobalInstances.init.setVisible(true);
 					GlobalInstances.menuOperador.setVisible(false);
