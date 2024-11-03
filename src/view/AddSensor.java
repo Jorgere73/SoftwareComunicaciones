@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
@@ -16,11 +17,14 @@ public class AddSensor extends JFrame {
 	private JPanel contentPane;
 	private JTextField nombreSensor;
 	private JTextField ubicacionSensor;
+	private SensoresModel msensores;
 
 	/**
 	 * Create the frame.
 	 */
 	public AddSensor() {
+		msensores = new SensoresModel();
+		
 		setTitle("Añadir Sensor");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 440);
@@ -80,18 +84,30 @@ public class AddSensor extends JFrame {
 		btnCancelar.setBounds(30, 335, 136, 51);
 		contentPane.add(btnCancelar);
 		
-		JButton btnAceptar = new JButton("Aceptar");
+		JButton btnAceptar = new JButton("Añadir");
 		btnAceptar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
+				msensores.fillDB("./resources/sensores.txt");
+				
 				String tipo = (String) choice.getSelectedItem();
 				String nombre = nombreSensor.getText();
 				String ubicacion = ubicacionSensor.getText();
 				
 				if((tipo != null) && (nombre != null) && (ubicacion != null))
 				{
+					Sensor sensor = new Sensor(nombre, tipo, ubicacion);
+					msensores.addSensor(sensor);
+					msensores.dump("./resources/sensores.txt");
 					
+					JOptionPane.showMessageDialog(null, 
+			                "Se ha añadido el sensor correctamente", 
+			                "Sensor añadido", 
+			                JOptionPane.INFORMATION_MESSAGE);
+					
+					nombreSensor.setText("");
+					ubicacionSensor.setText("");
 				}
 			}
 		});

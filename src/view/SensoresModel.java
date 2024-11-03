@@ -2,9 +2,12 @@ package view;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Map.Entry;
 
 public class SensoresModel 
 {
@@ -32,6 +35,10 @@ public class SensoresModel
 	{
 		sensoresDB.clear();
 	}
+	public HashMap<String, Sensor> getSensores()
+	{
+		return sensoresDB;
+	}
 	
 	
 	public void fillDB(String fileName) {
@@ -55,5 +62,36 @@ public class SensoresModel
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void dump(String nombreFichero) 
+	{
+		 FileWriter fichero = null;
+		 PrintWriter pw = null;
+		 try
+		 {
+			 fichero = new FileWriter(nombreFichero);
+			 pw = new PrintWriter(fichero);
+			 for( Entry<String, Sensor> entradaTabla:sensoresDB.entrySet()){
+				 	String name = entradaTabla.getKey();
+				 	Sensor sensor= entradaTabla.getValue();
+				 	pw.println(sensor.getName() + "\t" + sensor.getUbicacion() + "\t" + sensor.getTipo());
+			 }
+		 } 
+		 catch (Exception e) 
+		 {
+			 e.printStackTrace();
+		 } 
+		 finally 
+		 {
+			 try 
+			 {
+				 if (null != fichero) fichero.close();
+			 } 
+			 catch (Exception e2) 
+			 {
+				 e2.printStackTrace();
+			 }
+		 }
 	}
 }

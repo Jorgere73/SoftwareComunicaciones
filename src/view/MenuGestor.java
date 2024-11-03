@@ -18,6 +18,7 @@ public class MenuGestor extends JFrame {
 	private JPanel contentPane;
 	private JRadioButton rdbtnAgregarSensor;
 	private CuentasModel mcuentas;
+	private SensoresModel msensores;
 	/**
 	 * Create the frame.
 	 */
@@ -25,6 +26,7 @@ public class MenuGestor extends JFrame {
 	{
 		
 		mcuentas = new CuentasModel();
+		msensores = new SensoresModel();
 		mcuentas.fillDB("./resources/usuarios_db.txt");
 		
 		setTitle("Menú de gestor");
@@ -102,6 +104,20 @@ public class MenuGestor extends JFrame {
 				else
 				{
 					//Abrir ventana eliminar sensor
+					msensores.fillDB("./resources/sensores.txt");
+					if(msensores.getSensores().size() > 0)
+					{
+						GlobalInstances.deleteSensor.setVisible(true);
+						GlobalInstances.menuGestor.setVisible(false);
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, 
+				                "No tiene sensores registrados para eliminar", 
+				                "Error", 
+				                JOptionPane.ERROR_MESSAGE);
+					}
+					
 				}
 			}
 		});
