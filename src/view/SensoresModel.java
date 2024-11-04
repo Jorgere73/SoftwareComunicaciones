@@ -40,6 +40,34 @@ public class SensoresModel
 		return sensoresDB;
 	}
 	
+	public int noGestionados()
+	{
+		int nogestionados = 0;
+		for(Entry<String, Sensor> entradaTabla:sensoresDB.entrySet())
+		{
+			//Si está siendo gestionado...
+			if(entradaTabla.getValue().getOperador().equals("Sin gestionar"))
+			{
+				nogestionados++;
+			}
+		}
+		return nogestionados;
+	}
+	
+	//Devuelve el número de sensores que son gestionados por la cuenta de gestor proporcionada
+	public int gestionados(String operador)
+	{
+		int gestionados = 0;
+		for(Entry<String, Sensor> entradaTabla:sensoresDB.entrySet())
+		{
+			if(entradaTabla.getValue().getOperador().equals(operador))
+			{
+				gestionados++;
+			}
+		}
+		return gestionados;
+	}
+	
 	
 	public void fillDB(String fileName) {
 		try(FileReader fr = new FileReader(fileName);
@@ -53,7 +81,8 @@ public class SensoresModel
 					String loginName = pieces[0];
 					String ubicacion  = pieces[1];
 					String type      = pieces[2];
-					addSensor(new Sensor(loginName,type, ubicacion));
+					String operador = pieces[3];
+					addSensor(new Sensor(loginName,type, ubicacion, operador));
 				} // if
 			} // while
 			
@@ -75,7 +104,7 @@ public class SensoresModel
 			 for( Entry<String, Sensor> entradaTabla:sensoresDB.entrySet()){
 				 	String name = entradaTabla.getKey();
 				 	Sensor sensor= entradaTabla.getValue();
-				 	pw.println(sensor.getName() + "\t" + sensor.getUbicacion() + "\t" + sensor.getTipo());
+				 	pw.println(sensor.getName() + "\t" + sensor.getUbicacion() + "\t" + sensor.getTipo() + "\t" + sensor.getOperador());
 			 }
 		 } 
 		 catch (Exception e) 

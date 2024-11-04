@@ -15,12 +15,15 @@ public class MenuOperador extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private CuentasModel mcuentas;
+	private SensoresModel msensores;
 
 	/**
 	 * Create the frame.
 	 */
 	public MenuOperador() {
 		mcuentas = new CuentasModel();
+		msensores = new SensoresModel();
+		
 		mcuentas.fillDB("./resources/usuarios_db.txt");
 		
 		setTitle("Menú de operador");
@@ -37,10 +40,55 @@ public class MenuOperador extends JFrame {
 		contentPane.add(lblActividad);
 		
 		JButton btnGestionSensor = new JButton("Gestionar nuevo sensor");
+		btnGestionSensor.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				msensores.clearSensores();
+				msensores.fillDB("./resources/sensores.txt");
+				if(msensores.noGestionados() <= 0)
+				{
+					JOptionPane.showMessageDialog(null, 
+			                "No hay sensores por gestionar", 
+			                "Sensores gestionados", 
+			                JOptionPane.ERROR_MESSAGE);
+				}
+				else
+				{
+					//Para refrescar la tabla de sensores
+					GlobalInstances.gestionarSensor = new GestionarSensor();
+					
+					GlobalInstances.gestionarSensor.setVisible(true);
+					GlobalInstances.menuOperador.setVisible(false);					
+				}
+
+			}
+		});
 		btnGestionSensor.setBounds(52, 43, 336, 25);
 		contentPane.add(btnGestionSensor);
 		
 		JButton btnDejarDeGestionar = new JButton("Dejar de gestionar sensor");
+		btnDejarDeGestionar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				msensores.fillDB("./resources/sensores.txt");
+				if(msensores.gestionados(GlobalInstances.cuenta.getName()) <= 0)
+				{
+					JOptionPane.showMessageDialog(null, 
+			                "No hay sensores por dejar de gestionar para su cuenta", 
+			                "Sensores gestionados", 
+			                JOptionPane.ERROR_MESSAGE);
+				}
+				else
+				{
+					GlobalInstances.dejarSensor = new DejarSensor();
+					GlobalInstances.dejarSensor.setVisible(true);
+					GlobalInstances.menuOperador.setVisible(false);
+				}
+				
+			}
+		});
 		btnDejarDeGestionar.setBounds(52, 80, 336, 25);
 		contentPane.add(btnDejarDeGestionar);
 		

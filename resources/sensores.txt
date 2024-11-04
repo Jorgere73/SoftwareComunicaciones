@@ -1,0 +1,6 @@
+gg	2	Humedad	Sin gestionar
+patata	a	Temperatura exterior	Sin gestionar
+a	b	Temperatura exterior	q
+t	t	Temperatura exterior	q
+ghg	ghg	NH3	q
+x	x	Temperatura exterior	q

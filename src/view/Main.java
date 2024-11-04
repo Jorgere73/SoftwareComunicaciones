@@ -11,6 +11,7 @@ public class Main
 		GlobalInstances.menuOperador = new MenuOperador();
 		GlobalInstances.addSensor = new AddSensor();
 		GlobalInstances.deleteSensor = new DeleteSensor();
+		GlobalInstances.gestionarSensor = new GestionarSensor();
 		
 		GlobalInstances.init.setVisible(true);
 	}

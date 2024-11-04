@@ -67,10 +67,13 @@ public class Login extends JFrame {
 				{
 					if(Arrays.equals(password, cuentaLogin.getPass().toCharArray()))
 					{
+						textField.setText("");
+						passwordField.setText("");
 						GlobalInstances.cuenta = cuentaLogin;
 						//Contraseña y usuario correctos
 						if(cuentaLogin.getTipo() == 'o')
 						{
+							
 							//Redirigir a menu de operador
 							GlobalInstances.menuOperador.setVisible(true);
 							GlobalInstances.login.setVisible(false);
@@ -125,6 +128,8 @@ public class Login extends JFrame {
 		btnVolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				textField.setText("");
+				passwordField.setText("");
 				GlobalInstances.init.setVisible(true);
 				GlobalInstances.login.setVisible(false);
 			}

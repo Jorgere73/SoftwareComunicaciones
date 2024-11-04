@@ -79,9 +79,14 @@ public class Registro extends JFrame {
 				String name = textField.getText();
 				if(Arrays.equals(passwordField.getPassword(), passwordField_1.getPassword()))
 				{
+					
 					//Contraseñas coinciden -> crear cuenta
 					String password = new String(passwordField.getPassword());
 					Cuenta cuenta = new Cuenta(name, password, type);
+					
+					textField.setText("");
+					passwordField.setText("");
+					
 					mcuentas.addCuenta(cuenta);
 					//Guardar la cuenta en el archivo .txt
 					mcuentas.dump("./resources/usuarios_db.txt");

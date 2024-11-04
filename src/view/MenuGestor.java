@@ -84,7 +84,7 @@ public class MenuGestor extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				GlobalInstances.init.setVisible(true);
-				GlobalInstances.menuOperador.setVisible(false);
+				GlobalInstances.menuGestor.setVisible(false);
 			}
 		});
 		btnCerrarSesin.setBounds(282, 214, 145, 36);

@@ -9,6 +9,8 @@ public class GlobalInstances
 	public static MenuOperador menuOperador;
 	public static AddSensor addSensor;
 	public static DeleteSensor deleteSensor;
+	public static GestionarSensor gestionarSensor;
+	public static DejarSensor dejarSensor;
 	
 	//Guarda la cuenta que se está usando en el momento, para recordarla si nos damos de baja
 	public static Cuenta cuenta;
