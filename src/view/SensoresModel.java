@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Map.Entry;
@@ -68,6 +69,23 @@ public class SensoresModel
 		return gestionados;
 	}
 	
+	//Devuelve el número de sensores que son gestionados por la cuenta de gestor proporcionada
+		public String[] listarGestionados(String operador)
+		{
+			ArrayList<String> list = new ArrayList<String>();
+			int gestionados = 0;
+			for(Entry<String, Sensor> entradaTabla:sensoresDB.entrySet())
+			{
+				if(entradaTabla.getValue().getOperador().equals(operador))
+				{
+					list.add(entradaTabla.getKey());
+				}
+			}
+			
+			String[] listGestionados =  list.toArray(new String[0]);
+			return listGestionados;
+		}
+		
 	
 	public void fillDB(String fileName) {
 		try(FileReader fr = new FileReader(fileName);

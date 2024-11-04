@@ -93,6 +93,16 @@ public class MenuOperador extends JFrame {
 		contentPane.add(btnDejarDeGestionar);
 		
 		JButton btnListadoDeMis = new JButton("Listado de mis sensores");
+		btnListadoDeMis.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				GlobalInstances.listaSensores = new ListadoSensores();
+				
+				GlobalInstances.listaSensores.setVisible(true);
+				GlobalInstances.menuOperador.setVisible(false);
+			}
+		});
 		btnListadoDeMis.setBounds(52, 117, 336, 25);
 		contentPane.add(btnListadoDeMis);
 		
