@@ -1,9 +1,5 @@
 carlos	p098765.	a
 facil	a123456a	o
-a	b	a
-q	q	o
-c	a	a
 alicia	q1w2e3r4	o
 teresa	p0o9i8u7	o
-w	w	o
 andres	Q123456?	o

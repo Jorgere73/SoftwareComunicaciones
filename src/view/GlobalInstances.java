@@ -12,6 +12,7 @@ public class GlobalInstances
 	public static GestionarSensor gestionarSensor;
 	public static DejarSensor dejarSensor;
 	public static ListadoSensores listaSensores;
+	public static ListadoIncidencias listaIncidencias;
 	
 	//Guarda la cuenta que se está usando en el momento, para recordarla si nos damos de baja
 	public static Cuenta cuenta;

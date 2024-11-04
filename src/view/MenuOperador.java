@@ -107,6 +107,15 @@ public class MenuOperador extends JFrame {
 		contentPane.add(btnListadoDeMis);
 		
 		JButton btnListadoDeIncidencias = new JButton("Listado de incidencias");
+		btnListadoDeIncidencias.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				GlobalInstances.listaIncidencias.setVisible(true);
+				GlobalInstances.menuOperador.setVisible(false);
+			}
+		});
+		
 		btnListadoDeIncidencias.setBounds(52, 154, 336, 25);
 		contentPane.add(btnListadoDeIncidencias);
 		

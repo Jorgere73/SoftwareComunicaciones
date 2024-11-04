@@ -12,6 +12,7 @@ public class Main
 		GlobalInstances.addSensor = new AddSensor();
 		GlobalInstances.deleteSensor = new DeleteSensor();
 		GlobalInstances.gestionarSensor = new GestionarSensor();
+		GlobalInstances.listaIncidencias = new ListadoIncidencias();
 		
 		GlobalInstances.init.setVisible(true);
 	}
