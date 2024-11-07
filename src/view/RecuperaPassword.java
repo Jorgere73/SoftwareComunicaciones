@@ -17,7 +17,8 @@ public class RecuperaPassword extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
+	public JTextField textField;
+	public JButton btnRecupera;
 
 	/**
 	 * Create the frame.
@@ -44,13 +45,7 @@ public class RecuperaPassword extends JFrame {
 		textField.setColumns(10);
 		
 		JButton btnRecupera = new JButton("Recupera");
-		btnRecupera.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				
-			}
-		});
+		
 		btnRecupera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
