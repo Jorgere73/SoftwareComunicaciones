@@ -1,5 +1,7 @@
 package view;
 
+import control.CuentasControl;
+
 public class Main 
 {
 	public static void main(String[] args)
@@ -14,6 +16,8 @@ public class Main
 		GlobalInstances.gestionarSensor = new GestionarSensor();
 		GlobalInstances.listaIncidencias = new ListadoIncidencias();
 		GlobalInstances.recuperaPass = new RecuperaPassword();
+		
+		CuentasControl ccuentas = new CuentasControl();
 		
 		GlobalInstances.init.setVisible(true);
 	}

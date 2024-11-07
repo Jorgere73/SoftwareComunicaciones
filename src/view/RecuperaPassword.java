@@ -44,7 +44,7 @@ public class RecuperaPassword extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnRecupera = new JButton("Recupera");
+		btnRecupera = new JButton("Recupera");
 		
 		btnRecupera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
