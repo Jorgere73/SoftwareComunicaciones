@@ -1,4 +1,4 @@
-package view;
+package model;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map.Entry;
+
+import view.Cuenta;
+
 import java.util.Scanner;
 
 public class CuentasModel 

@@ -13,6 +13,7 @@ public class GlobalInstances
 	public static DejarSensor dejarSensor;
 	public static ListadoSensores listaSensores;
 	public static ListadoIncidencias listaIncidencias;
+	public static RecuperaPassword recuperaPass;
 	
 	//Guarda la cuenta que se está usando en el momento, para recordarla si nos damos de baja
 	public static Cuenta cuenta;

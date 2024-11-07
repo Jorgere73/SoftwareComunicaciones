@@ -4,6 +4,9 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.CuentasModel;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -117,6 +120,14 @@ public class Login extends JFrame {
 		contentPane.add(lblhasOlvidadoTu);
 		
 		JButton btnRecuperaTuContrasea = new JButton("Recupera tu contraseña");
+		btnRecuperaTuContrasea.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				GlobalInstances.recuperaPass.setVisible(true);
+				GlobalInstances.login.setVisible(false);
+			}
+		});
 		btnRecuperaTuContrasea.setBounds(128, 213, 201, 27);
 		contentPane.add(btnRecuperaTuContrasea);
 		

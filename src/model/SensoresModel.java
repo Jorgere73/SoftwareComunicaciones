@@ -1,4 +1,4 @@
-package view;
+package model;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Map.Entry;
+
+import view.Sensor;
 
 public class SensoresModel 
 {

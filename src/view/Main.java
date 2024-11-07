@@ -13,6 +13,7 @@ public class Main
 		GlobalInstances.deleteSensor = new DeleteSensor();
 		GlobalInstances.gestionarSensor = new GestionarSensor();
 		GlobalInstances.listaIncidencias = new ListadoIncidencias();
+		GlobalInstances.recuperaPass = new RecuperaPassword();
 		
 		GlobalInstances.init.setVisible(true);
 	}
