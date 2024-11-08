@@ -19,16 +19,16 @@ import java.util.Arrays;
 public class Login extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField textField;
-	private JPasswordField passwordField;
+	public JPanel contentPane;
+	public JTextField textField;
+	public JPasswordField passwordField;
 	private CuentasModel mcuentas;
+	public JButton btnAceptar;
 
 	/**
 	 * Create the frame.
 	 */
 	public Login() {
-		mcuentas = new CuentasModel();
 		
 		setTitle("Inicio de sesion");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,66 +52,8 @@ public class Login extends JFrame {
 		lblContrasea.setBounds(95, 78, 94, 17);
 		contentPane.add(lblContrasea);
 		
-		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e)
-			{
-				
-				mcuentas.clearCuentas();
-				mcuentas.fillDB("./resources/usuarios_db.txt");
-				String login = textField.getText();
-				//Devuelve un char[] por seguridad para que la contraseña no se mantenga en memoria
-				char[] password = passwordField.getPassword();
-				
-				Cuenta cuentaLogin = mcuentas.getCuenta(login);
-				
-				if(cuentaLogin != null)
-				{
-					if(Arrays.equals(password, cuentaLogin.getPass().toCharArray()))
-					{
-						textField.setText("");
-						passwordField.setText("");
-						GlobalInstances.cuenta = cuentaLogin;
-						//Contraseña y usuario correctos
-						if(cuentaLogin.getTipo() == 'o')
-						{
-							
-							//Redirigir a menu de operador
-							GlobalInstances.menuOperador.setVisible(true);
-							GlobalInstances.login.setVisible(false);
-						}
-						else if(cuentaLogin.getTipo() == 'a')
-						{
-							//Redirigir a menu de gestor
-							GlobalInstances.menuGestor.setVisible(true);
-							GlobalInstances.login.setVisible(false);
-						}
-						 
-					}
-					else
-					{
-						//Usuario existe, pero contraseña incorrecta
-						JOptionPane.showMessageDialog(null, 
-		                        "La contraseña introducida es incorrecta.", 
-		                        "Error de autenticación", 
-		                        JOptionPane.ERROR_MESSAGE);
-						passwordField.setText("");
-					}
-				}
-				else
-				{
-					//No existe esa cuenta
-					JOptionPane.showMessageDialog(null, 
-	                        "El usuario introducido es incorrecto.", 
-	                        "Error de autenticación", 
-	                        JOptionPane.ERROR_MESSAGE);
-					textField.setText("");
-					passwordField.setText("");
-				}
-				
-			}
-		});
+		btnAceptar = new JButton("Aceptar");
+		
 		btnAceptar.setBounds(128, 145, 105, 27);
 		contentPane.add(btnAceptar);
 		

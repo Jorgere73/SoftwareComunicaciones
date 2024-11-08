@@ -4,18 +4,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import model.CuentasModel;
 
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Arrays;
 import java.awt.Color;
 
 public class Registro extends JFrame {
@@ -26,15 +23,12 @@ public class Registro extends JFrame {
 	public JPasswordField passwordField;
 	public JPasswordField passwordField_1;
 	public JRadioButton rdbtnGestor;
-	public CuentasModel mcuentas;
 	public JButton btnAceptar;
 
 	/**
 	 * Create the frame.
 	 */
 	public Registro() {
-		mcuentas = new CuentasModel();
-		mcuentas.fillDB("./resources/usuarios_db.txt");
 		
 		setTitle("Registro de nuevos usuarios");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

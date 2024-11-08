@@ -3,8 +3,8 @@ package control;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Arrays;
-import java.util.Map.Entry;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import model.CuentasModel;
@@ -13,14 +13,73 @@ import view.GlobalInstances;
 
 public class CuentasControl {
 	//TODO Hacer listeners publicos para todos los botones que realicen acciones con las bases y moverlos a CuentasControl y SensorControl
-	//TODO Recuperar contraseña
-	//TODO Solo un gestor, si hay más, da error
 	public CuentasModel mcuentas;
 	public String pathUsuarios = "./resources/usuarios_db.txt";
 	
 	public CuentasControl()
 	{
 		mcuentas = new CuentasModel();
+		
+		GlobalInstances.login.btnAceptar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				
+				mcuentas.clearCuentas();
+				mcuentas.fillDB(pathUsuarios);
+				String login = GlobalInstances.login.textField.getText();
+				//Devuelve un char[] por seguridad para que la contraseña no se mantenga en memoria
+				char[] password = GlobalInstances.login.passwordField.getPassword();
+				
+				Cuenta cuentaLogin = mcuentas.getCuenta(login);
+				
+				if(cuentaLogin != null)
+				{
+					if(Arrays.equals(password, cuentaLogin.getPass().toCharArray()))
+					{
+						GlobalInstances.login.textField.setText("");
+						GlobalInstances.login.passwordField.setText("");
+						GlobalInstances.cuenta = cuentaLogin;
+						//Contraseña y usuario correctos
+						if(cuentaLogin.getTipo() == 'o')
+						{
+							
+							//Redirigir a menu de operador
+							GlobalInstances.menuOperador.setVisible(true);
+							GlobalInstances.login.setVisible(false);
+						}
+						else if(cuentaLogin.getTipo() == 'a')
+						{
+							//Redirigir a menu de gestor
+							GlobalInstances.menuGestor.setVisible(true);
+							GlobalInstances.login.setVisible(false);
+						}
+						 
+					}
+					else
+					{
+						//Usuario existe, pero contraseña incorrecta
+						JOptionPane.showMessageDialog(null, 
+		                        "La contraseña introducida es incorrecta.", 
+		                        "Error de autenticación", 
+		                        JOptionPane.ERROR_MESSAGE);
+						GlobalInstances.login.passwordField.setText("");
+					}
+				}
+				else
+				{
+					//No existe esa cuenta
+					JOptionPane.showMessageDialog(null, 
+	                        "El usuario introducido es incorrecto.", 
+	                        "Error de autenticación", 
+	                        JOptionPane.ERROR_MESSAGE);
+					GlobalInstances.login.textField.setText("");
+					GlobalInstances.login.passwordField.setText("");
+				}
+				
+			}
+		});
+		
 		
 		//Boton aceptar de recuperar password
 		GlobalInstances.recuperaPass.btnRecupera.addMouseListener(new MouseAdapter() {
@@ -107,6 +166,27 @@ public class CuentasControl {
 	                        "Las contraseñas introducidas no coinciden.", 
 	                        "Error de registro", 
 	                        JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+		
+		
+		GlobalInstances.menuGestor.btnDarseDeBaja.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				mcuentas.clearCuentas();
+				mcuentas.fillDB(pathUsuarios);
+				int response = JOptionPane.showConfirmDialog(null, 
+		                "¿Quieres dar de baja a la cuenta?", 
+		                "Seleccione una opción", 
+		                JOptionPane.YES_NO_OPTION);
+				if(response == JOptionPane.YES_OPTION)
+				{
+					mcuentas.removeCuenta(GlobalInstances.cuenta.getName());
+					mcuentas.dump(pathUsuarios);
+					GlobalInstances.init.setVisible(true);
+					GlobalInstances.menuGestor.setVisible(false);
 				}
 			}
 		});

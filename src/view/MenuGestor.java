@@ -20,19 +20,14 @@ public class MenuGestor extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JRadioButton rdbtnAgregarSensor;
-	private CuentasModel mcuentas;
-	private SensoresModel msensores;
+	public JRadioButton rdbtnAgregarSensor;
+	public JButton btnDarseDeBaja;
+	public JButton btnAceptar;
 	/**
 	 * Create the frame.
 	 */
 	public MenuGestor() 
 	{
-		
-		mcuentas = new CuentasModel();
-		msensores = new SensoresModel();
-		mcuentas.fillDB("./resources/usuarios_db.txt");
-		
 		setTitle("Menú de gestor");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -61,24 +56,7 @@ public class MenuGestor extends JFrame {
 		bgroup.add(rdbtnEliminarSensor);
 		
 		
-		JButton btnDarseDeBaja = new JButton("Darse de baja");
-		btnDarseDeBaja.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				int response = JOptionPane.showConfirmDialog(null, 
-		                "¿Quieres dar de baja a la cuenta?", 
-		                "Seleccione una opción", 
-		                JOptionPane.YES_NO_OPTION);
-				if(response == JOptionPane.YES_OPTION)
-				{
-					mcuentas.removeCuenta(GlobalInstances.cuenta.getName());
-					mcuentas.dump("./resources/usuarios_db.txt");
-					GlobalInstances.init.setVisible(true);
-					GlobalInstances.menuGestor.setVisible(false);
-				}
-			}
-		});
+		btnDarseDeBaja = new JButton("Darse de baja");
 		btnDarseDeBaja.setBackground(Color.RED);
 		btnDarseDeBaja.setBounds(12, 214, 139, 36);
 		contentPane.add(btnDarseDeBaja);
@@ -94,39 +72,8 @@ public class MenuGestor extends JFrame {
 		btnCerrarSesin.setBounds(282, 214, 145, 36);
 		contentPane.add(btnCerrarSesin);
 		
-		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				if(rdbtnAgregarSensor.isSelected())
-				{
-					//Abrir ventana añadir sensor
-					GlobalInstances.addSensor.setVisible(true);
-					GlobalInstances.menuGestor.setVisible(false);
-				}
-				else
-				{
-					//Abrir ventana eliminar sensor
-					msensores.clearSensores();
-					msensores.fillDB("./resources/sensores.txt");
-					if(msensores.getSensores().size() > 0)
-					{
-						GlobalInstances.deleteSensor = new DeleteSensor();
-						GlobalInstances.deleteSensor.setVisible(true);
-						GlobalInstances.menuGestor.setVisible(false);
-					}
-					else
-					{
-						JOptionPane.showMessageDialog(null, 
-				                "No tiene sensores registrados para eliminar", 
-				                "Error", 
-				                JOptionPane.ERROR_MESSAGE);
-					}
-					
-				}
-			}
-		});
+		btnAceptar = new JButton("Aceptar");
+		
 		btnAceptar.setBounds(141, 140, 149, 36);
 		contentPane.add(btnAceptar);
 		
