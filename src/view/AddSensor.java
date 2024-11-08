@@ -18,15 +18,15 @@ public class AddSensor extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField nombreSensor;
-	private JTextField ubicacionSensor;
-	private SensoresModel msensores;
+	public JTextField nombreSensor;
+	public JTextField ubicacionSensor;
+	public JButton btnAceptar;
+	public JComboBox<String> choice;
 
 	/**
 	 * Create the frame.
 	 */
 	public AddSensor() {
-		msensores = new SensoresModel();
 		
 		setTitle("Añadir Sensor");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,7 +41,7 @@ public class AddSensor extends JFrame {
 		lblSeleccioneQuTipo.setBounds(66, 10, 314, 15);
 		contentPane.add(lblSeleccioneQuTipo);
 		
-		JComboBox<String> choice = new JComboBox<>();
+		choice = new JComboBox<>();
 		choice.setBounds(76, 44, 284, 38);
 		choice.addItem("Temperatura exterior");
 		choice.addItem("Temperatura interior");
@@ -87,34 +87,8 @@ public class AddSensor extends JFrame {
 		btnCancelar.setBounds(30, 335, 136, 51);
 		contentPane.add(btnCancelar);
 		
-		JButton btnAceptar = new JButton("Añadir");
-		btnAceptar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				msensores.clearSensores();
-				msensores.fillDB("./resources/sensores.txt");
-				
-				String tipo = (String) choice.getSelectedItem();
-				String nombre = nombreSensor.getText();
-				String ubicacion = ubicacionSensor.getText();
-				
-				if((tipo != null) && (nombre != null) && (ubicacion != null))
-				{
-					Sensor sensor = new Sensor(nombre, tipo, ubicacion);
-					msensores.addSensor(sensor);
-					msensores.dump("./resources/sensores.txt");
-					
-					JOptionPane.showMessageDialog(null, 
-			                "Se ha añadido el sensor correctamente", 
-			                "Sensor añadido", 
-			                JOptionPane.INFORMATION_MESSAGE);
-					
-					nombreSensor.setText("");
-					ubicacionSensor.setText("");
-				}
-			}
-		});
+		btnAceptar = new JButton("Añadir");
+		
 		btnAceptar.setBounds(272, 335, 123, 51);
 		contentPane.add(btnAceptar);
 		

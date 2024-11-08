@@ -1,0 +1,2 @@
+a	y	Temperatura exterior	a
+ds	ds	Temperatura exterior	Sin gestionar

@@ -10,8 +10,6 @@ import javax.swing.border.EmptyBorder;
 import model.SensoresModel;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -20,8 +18,9 @@ public class DeleteSensor extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
 	private SensoresModel msensores;
+	public JButton btnEliminar;
+	public JComboBox<String> choice;
 
 	/**
 	 * Create the frame.
@@ -43,7 +42,7 @@ public class DeleteSensor extends JFrame {
 		lblIndiqueElNombre.setBounds(79, 12, 298, 30);
 		contentPane.add(lblIndiqueElNombre);
 		
-		JComboBox choice = new JComboBox();
+		choice = new JComboBox<String>();
 		choice.setBounds(57, 54, 320, 36);
 		int i = 0;
 		for(Entry<String, Sensor> entradaTabla:msensores.getSensores().entrySet())
@@ -66,40 +65,8 @@ public class DeleteSensor extends JFrame {
 		btnVolver.setBounds(57, 102, 132, 36);
 		contentPane.add(btnVolver);
 		
-		JButton btnEliminar = new JButton("Eliminar");
-		btnEliminar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				msensores.clearSensores();
-				msensores.fillDB("./resources/sensores.txt");
-				
-				//Queda más de un sensor por eliminar
-				Object borrado = choice.getSelectedItem();
-				msensores.removeSensor((String) borrado);
-				msensores.dump("./resources/sensores.txt");
-				choice.removeItem(borrado);
-				
-				if(msensores.getSensores().size() < 1)
-				{
-					//Solo queda un sensor por eliminar
-					JOptionPane.showMessageDialog(null, 
-			                "No quedan más sensores por eliminar", 
-			                "Sensor eliminado", 
-			                JOptionPane.INFORMATION_MESSAGE);
-					
-					GlobalInstances.menuGestor.setVisible(true);
-					GlobalInstances.deleteSensor.setVisible(false);
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(null, 
-			                "Se ha eliminado el sensor correctamente", 
-			                "Sensor eliminado", 
-			                JOptionPane.INFORMATION_MESSAGE);
-				}	
-			}
-		});
+		btnEliminar = new JButton("Eliminar");
+		
 		btnEliminar.setBounds(235, 102, 142, 36);
 		contentPane.add(btnEliminar);
 	}
