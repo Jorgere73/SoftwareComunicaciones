@@ -30,7 +30,7 @@ public class Login extends JFrame {
 	public Login() {
 		mcuentas = new CuentasModel();
 		
-		setTitle("Inicio de sesión");
+		setTitle("Inicio de sesion");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -48,7 +48,7 @@ public class Login extends JFrame {
 		lblNombre.setBounds(95, 12, 60, 17);
 		contentPane.add(lblNombre);
 		
-		JLabel lblContrasea = new JLabel("Contraseña");
+		JLabel lblContrasea = new JLabel("Password");
 		lblContrasea.setBounds(95, 78, 94, 17);
 		contentPane.add(lblContrasea);
 		
@@ -115,11 +115,11 @@ public class Login extends JFrame {
 		btnAceptar.setBounds(128, 145, 105, 27);
 		contentPane.add(btnAceptar);
 		
-		JLabel lblhasOlvidadoTu = new JLabel("¿Has olvidado tu contraseña?");
+		JLabel lblhasOlvidadoTu = new JLabel("¿Has olvidado tu password?");
 		lblhasOlvidadoTu.setBounds(128, 184, 227, 17);
 		contentPane.add(lblhasOlvidadoTu);
 		
-		JButton btnRecuperaTuContrasea = new JButton("Recupera tu contraseña");
+		JButton btnRecuperaTuContrasea = new JButton("Recupera tu password");
 		btnRecuperaTuContrasea.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) 

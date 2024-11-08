@@ -22,11 +22,12 @@ public class Registro extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JPasswordField passwordField;
-	private JPasswordField passwordField_1;
-	private JRadioButton rdbtnGestor;
-	private CuentasModel mcuentas;
+	public JTextField textField;
+	public JPasswordField passwordField;
+	public JPasswordField passwordField_1;
+	public JRadioButton rdbtnGestor;
+	public CuentasModel mcuentas;
+	public JButton btnAceptar;
 
 	/**
 	 * Create the frame.
@@ -73,44 +74,9 @@ public class Registro extends JFrame {
 		lblRepitaLaContrasea.setBounds(92, 187, 180, 17);
 		contentPane.add(lblRepitaLaContrasea);
 		
-		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar = new JButton("Aceptar");
 		btnAceptar.setBackground(Color.GREEN);
-		btnAceptar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				char type = rdbtnGestor.isSelected() ? 'a' : 'o';
-				String name = textField.getText();
-				if(Arrays.equals(passwordField.getPassword(), passwordField_1.getPassword()))
-				{
-					
-					//Contraseñas coinciden -> crear cuenta
-					String password = new String(passwordField.getPassword());
-					Cuenta cuenta = new Cuenta(name, password, type);
-					
-					textField.setText("");
-					passwordField.setText("");
-					
-					mcuentas.addCuenta(cuenta);
-					//Guardar la cuenta en el archivo .txt
-					mcuentas.dump("./resources/usuarios_db.txt");
-					JOptionPane.showMessageDialog(null, 
-	                        "Cuenta registrada correctamente", 
-	                        "Registro de cuentas", 
-	                        JOptionPane.INFORMATION_MESSAGE);
-					
-				}
-				else
-				{
-					//Contraseñas no coinciden
-					passwordField.setText("");
-					passwordField_1.setText("");
-					JOptionPane.showMessageDialog(null, 
-	                        "Las contraseñas introducidas no coinciden.", 
-	                        "Error de registro", 
-	                        JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
+		
 		btnAceptar.setBounds(112, 233, 94, 17);
 		contentPane.add(btnAceptar);
 		

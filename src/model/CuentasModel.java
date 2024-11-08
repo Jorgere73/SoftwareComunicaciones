@@ -39,6 +39,17 @@ public class CuentasModel
 		cuentasDB.clear();
 	}
 	
+	//Devuelve true si ya hay una cuenta que sea de operador en el sistema
+	public boolean ifadmin()
+	{
+		boolean admin = false;
+		for( Entry<String, Cuenta> entradaTabla:cuentasDB.entrySet())
+		{
+		 	Cuenta cuenta = entradaTabla.getValue();
+		 	if(cuenta.getTipo() == 'a') admin = true;
+		}
+		return admin;
+	}
 	
 	public void fillDB(String fileName) {
 		try(FileReader fr = new FileReader(fileName);
