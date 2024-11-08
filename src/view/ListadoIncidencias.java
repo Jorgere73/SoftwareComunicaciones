@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -8,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
-import model.SensoresModel;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -19,14 +17,11 @@ public class ListadoIncidencias extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private SensoresModel msensores;
 
 	/**
 	 * Create the frame.
 	 */
 	public ListadoIncidencias() {
-		msensores = new SensoresModel();
-		msensores.fillDB("./resources/sensores.txt");
 		
 		setTitle("Mis incidencias");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

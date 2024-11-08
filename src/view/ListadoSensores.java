@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -42,14 +41,11 @@ public class ListadoSensores extends JFrame {
         
 		setContentPane(contentPane);
 		
-		// Optionally, add a scroll pane to make the list scrollable
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(50, 53, 361, 139);
 		
-		// Add the scroll pane with the list to the frame
 		contentPane.add(scrollPane);
 		        
-		// Create the JList and add items
 		JList<String> list = new JList<>(items);
 		scrollPane.setViewportView(list);
 		        

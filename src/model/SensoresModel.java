@@ -75,7 +75,6 @@ public class SensoresModel
 		public String[] listarGestionados(String operador)
 		{
 			ArrayList<String> list = new ArrayList<String>();
-			int gestionados = 0;
 			for(Entry<String, Sensor> entradaTabla:sensoresDB.entrySet())
 			{
 				if(entradaTabla.getValue().getOperador().equals(operador))
@@ -122,7 +121,6 @@ public class SensoresModel
 			 fichero = new FileWriter(nombreFichero);
 			 pw = new PrintWriter(fichero);
 			 for( Entry<String, Sensor> entradaTabla:sensoresDB.entrySet()){
-				 	String name = entradaTabla.getKey();
 				 	Sensor sensor= entradaTabla.getValue();
 				 	pw.println(sensor.getName() + "\t" + sensor.getUbicacion() + "\t" + sensor.getTipo() + "\t" + sensor.getOperador());
 			 }

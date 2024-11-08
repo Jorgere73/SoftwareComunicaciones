@@ -37,7 +37,7 @@ public class SensoresControl
 				{
 					//Abrir ventana eliminar sensor
 					msensores.clearSensores();
-					msensores.fillDB("./resources/sensores.txt");
+					msensores.fillDB(pathSensores);
 					if(msensores.getSensores().size() > 0)
 					{
 						GlobalInstances.deleteSensor = new DeleteSensor();
@@ -62,7 +62,7 @@ public class SensoresControl
 			public void mouseClicked(MouseEvent e) 
 			{
 				msensores.clearSensores();
-				msensores.fillDB("./resources/sensores.txt");
+				msensores.fillDB(pathSensores);
 				
 				String tipo = (String) GlobalInstances.addSensor.choice.getSelectedItem();
 				String nombre = GlobalInstances.addSensor.nombreSensor.getText();
@@ -72,7 +72,7 @@ public class SensoresControl
 				{
 					Sensor sensor = new Sensor(nombre, tipo, ubicacion);
 					msensores.addSensor(sensor);
-					msensores.dump("./resources/sensores.txt");
+					msensores.dump(pathSensores);
 					
 					JOptionPane.showMessageDialog(null, 
 			                "Se ha añadido el sensor correctamente", 
@@ -86,18 +86,17 @@ public class SensoresControl
 		});
 		
 		
-		GlobalInstances.deleteSensor.btnEliminar.addMouseListener(new MouseAdapter() {
+		GlobalInstances.deleteSensor.btnDelete.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				System.out.println("AAA");
 				msensores.clearSensores();
-				msensores.fillDB("./resources/sensores.txt");
+				msensores.fillDB(pathSensores);
 				
 				//Queda más de un sensor por eliminar
 				Object borrado = GlobalInstances.deleteSensor.choice.getSelectedItem();
 				msensores.removeSensor((String) borrado);
-				msensores.dump("./resources/sensores.txt");
+				msensores.dump(pathSensores);
 				GlobalInstances.deleteSensor.choice.removeItem(borrado);
 				
 				if(msensores.getSensores().size() < 1)
@@ -127,7 +126,7 @@ public class SensoresControl
 			public void mouseClicked(MouseEvent e) 
 			{
 				msensores.clearSensores();
-				msensores.fillDB("./resources/sensores.txt");
+				msensores.fillDB(pathSensores);
 				if(msensores.noGestionados() <= 0)
 				{
 					JOptionPane.showMessageDialog(null, 
@@ -152,7 +151,7 @@ public class SensoresControl
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				msensores.fillDB("./resources/sensores.txt");
+				msensores.fillDB(pathSensores);
 				if(msensores.gestionados(GlobalInstances.cuenta.getName()) <= 0)
 				{
 					JOptionPane.showMessageDialog(null, 
@@ -167,6 +166,35 @@ public class SensoresControl
 					GlobalInstances.menuOperador.setVisible(false);
 				}
 				
+			}
+		});
+		
+		
+		GlobalInstances.gestionarSensor.btnAceptar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				String nombreSensor = (String) GlobalInstances.gestionarSensor.choice.getSelectedItem();
+				Sensor sensor = msensores.getSensor(nombreSensor);
+				
+				msensores.removeSensor(nombreSensor);
+				sensor.setOperador(GlobalInstances.cuenta.getName());
+				msensores.addSensor(sensor);
+				
+				msensores.dump("./resources/sensores.txt");
+				
+				GlobalInstances.gestionarSensor.choice.removeItem(nombreSensor);
+				
+				JOptionPane.showMessageDialog(null, 
+		                "Sensor añadido a la gestión de su cuenta correctamente", 
+		                "Sensor añadido", 
+		                JOptionPane.INFORMATION_MESSAGE);
+				
+				if(msensores.noGestionados() <= 0)
+				{
+					GlobalInstances.menuOperador.setVisible(true);
+					GlobalInstances.gestionarSensor.setVisible(false);
+				}
 			}
 		});
 	}

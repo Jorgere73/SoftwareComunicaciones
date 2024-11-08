@@ -4,7 +4,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Arrays;
 
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import model.CuentasModel;
@@ -188,6 +187,24 @@ public class CuentasControl {
 					GlobalInstances.init.setVisible(true);
 					GlobalInstances.menuGestor.setVisible(false);
 				}
+			}
+		});
+		
+		GlobalInstances.menuOperador.btnDarseDeBaja.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int response = JOptionPane.showConfirmDialog(null, 
+		                "¿Quieres dar de baja a la cuenta?", 
+		                "Seleccione una opción", 
+		                JOptionPane.YES_NO_OPTION);
+				if(response == JOptionPane.YES_OPTION)
+				{
+					mcuentas.removeCuenta(GlobalInstances.cuenta.getName());
+					mcuentas.dump(pathUsuarios);
+					GlobalInstances.init.setVisible(true);
+					GlobalInstances.menuOperador.setVisible(false);
+				}
+				
 			}
 		});
 	}

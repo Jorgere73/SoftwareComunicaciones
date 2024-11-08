@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
 import java.util.Map.Entry;
 
 import javax.swing.JComboBox;
@@ -21,6 +20,8 @@ public class GestionarSensor extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private SensoresModel msensores;
+	public JButton btnAceptar;
+	public JComboBox<String> choice;
 	
 	/**
 	 * Create the frame.
@@ -42,7 +43,7 @@ public class GestionarSensor extends JFrame {
 		msensores = new SensoresModel();
 		msensores.fillDB("./resources/sensores.txt");
 		
-		JComboBox<String> choice = new JComboBox();
+		JComboBox<String> choice = new JComboBox<String>();
 		choice.setBounds(45, 37, 364, 50);
 		int i = 0;
 		for(Entry<String, Sensor> entradaTabla:msensores.getSensores().entrySet())
@@ -68,7 +69,7 @@ public class GestionarSensor extends JFrame {
 		btnCancelar.setBounds(32, 173, 136, 50);
 		contentPane.add(btnCancelar);
 		
-		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) 

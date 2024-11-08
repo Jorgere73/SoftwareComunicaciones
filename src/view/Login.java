@@ -5,16 +5,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import model.CuentasModel;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Arrays;
 
 public class Login extends JFrame {
 
@@ -22,7 +19,6 @@ public class Login extends JFrame {
 	public JPanel contentPane;
 	public JTextField textField;
 	public JPasswordField passwordField;
-	private CuentasModel mcuentas;
 	public JButton btnAceptar;
 
 	/**

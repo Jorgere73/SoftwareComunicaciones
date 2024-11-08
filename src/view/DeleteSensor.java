@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import model.SensoresModel;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -19,8 +20,8 @@ public class DeleteSensor extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private SensoresModel msensores;
-	public JButton btnEliminar;
 	public JComboBox<String> choice;
+	public JButton btnDelete;
 
 	/**
 	 * Create the frame.
@@ -62,13 +63,45 @@ public class DeleteSensor extends JFrame {
 				GlobalInstances.deleteSensor.setVisible(false);
 			}
 		});
+		
 		btnVolver.setBounds(57, 102, 132, 36);
 		contentPane.add(btnVolver);
 		
-		btnEliminar = new JButton("Eliminar");
-		
-		btnEliminar.setBounds(235, 102, 142, 36);
-		contentPane.add(btnEliminar);
+		btnDelete = new JButton("Eliminar");
+		btnDelete.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				msensores.clearSensores();
+				msensores.fillDB("./resources/sensores.txt");
+				
+				//Queda más de un sensor por eliminar
+				Object borrado = GlobalInstances.deleteSensor.choice.getSelectedItem();
+				msensores.removeSensor((String) borrado);
+				msensores.dump("./resources/sensores.txt");
+				GlobalInstances.deleteSensor.choice.removeItem(borrado);
+				
+				if(msensores.getSensores().size() < 1)
+				{
+					//Solo queda un sensor por eliminar
+					JOptionPane.showMessageDialog(null, 
+			                "No quedan más sensores por eliminar", 
+			                "Sensor eliminado", 
+			                JOptionPane.INFORMATION_MESSAGE);
+					
+					GlobalInstances.menuGestor.setVisible(true);
+					GlobalInstances.deleteSensor.setVisible(false);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, 
+			                "Se ha eliminado el sensor correctamente", 
+			                "Sensor eliminado", 
+			                JOptionPane.INFORMATION_MESSAGE);
+				}	
+			}
+		});
+		btnDelete.setBounds(214, 102, 140, 36);
+		contentPane.add(btnDelete);
 	}
-
 }

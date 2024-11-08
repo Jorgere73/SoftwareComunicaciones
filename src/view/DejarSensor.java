@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
 import java.util.Map.Entry;
 
 import javax.swing.JComboBox;

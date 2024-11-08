@@ -5,10 +5,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import model.CuentasModel;
-import model.SensoresModel;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
@@ -19,16 +17,15 @@ public class MenuOperador extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private CuentasModel mcuentas;
-	private SensoresModel msensores;
 	public JButton btnGestionSensor;
 	public JButton btnDejarDeGestionar;
+	public JButton btnDarseDeBaja;
 
 	/**
 	 * Create the frame.
 	 */
 	public MenuOperador() {
 		mcuentas = new CuentasModel();
-		msensores = new SensoresModel();
 		
 		mcuentas.fillDB("./resources/usuarios_db.txt");
 		
@@ -82,24 +79,7 @@ public class MenuOperador extends JFrame {
 		btnListadoDeIncidencias.setBounds(52, 154, 336, 25);
 		contentPane.add(btnListadoDeIncidencias);
 		
-		JButton btnDarseDeBaja = new JButton("Darse de baja");
-		btnDarseDeBaja.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int response = JOptionPane.showConfirmDialog(null, 
-		                "¿Quieres dar de baja a la cuenta?", 
-		                "Seleccione una opción", 
-		                JOptionPane.YES_NO_OPTION);
-				if(response == JOptionPane.YES_OPTION)
-				{
-					mcuentas.removeCuenta(GlobalInstances.cuenta.getName());
-					mcuentas.dump("./resources/usuarios_db.txt");
-					GlobalInstances.init.setVisible(true);
-					GlobalInstances.menuOperador.setVisible(false);
-				}
-				
-			}
-		});
+		btnDarseDeBaja = new JButton("Darse de baja");
 		btnDarseDeBaja.setBackground(new Color(239, 41, 41));
 		btnDarseDeBaja.setBounds(12, 211, 150, 39);
 		contentPane.add(btnDarseDeBaja);

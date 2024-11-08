@@ -83,7 +83,6 @@ public class CuentasModel
 			 fichero = new FileWriter(nombreFichero);
 			 pw = new PrintWriter(fichero);
 			 for( Entry<String, Cuenta> entradaTabla:cuentasDB.entrySet()){
-				 	String name = entradaTabla.getKey();
 				 	Cuenta cuenta = entradaTabla.getValue();
 				 	pw.println(cuenta.getName() + "\t" + cuenta.getPass() + "\t" + cuenta.getTipo());
 			 }
